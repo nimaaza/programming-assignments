@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class StronglyConnected {
-  private static int[] vertextOrdering;
+  private static int[] vertexOrdering;
   private static int currentOrder;
 
   private static ArrayList<Integer>[] reverseGraph(ArrayList<Integer>[] adj) {
@@ -24,7 +24,7 @@ public class StronglyConnected {
   }
 
   private static void vertexPostProcessing(int s) {
-    vertextOrdering[currentOrder] = s;
+    vertexOrdering[currentOrder] = s;
     currentOrder += 1;
   }
 
@@ -42,20 +42,19 @@ public class StronglyConnected {
       ArrayList<Integer>[] reverseAdj = reverseGraph(adj);
 
       boolean[] explored = new boolean[adj.length];
-      vertextOrdering = new int[adj.length];
+      vertexOrdering = new int[adj.length];
       currentOrder = 0;
 
       for (int i =  0; i < explored.length; i++) {
         if (!explored[i]) dfs(reverseAdj, explored, i, true);
       }
 
-
       explored = new boolean[adj.length];
       int cc = 0;
 
-      for (int i = vertextOrdering.length - 1; i >= 0; i--) {
-        if (!explored[vertextOrdering[i]]) {
-          dfs(adj, explored, vertextOrdering[i], false);
+      for (int i = vertexOrdering.length - 1; i >= 0; i--) {
+        if (!explored[vertexOrdering[i]]) {
+          dfs(adj, explored, vertexOrdering[i], false);
           cc += 1;
         }
       }
